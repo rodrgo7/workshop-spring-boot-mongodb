@@ -1,9 +1,9 @@
 package com.oliveiradev.course.workshopmongo.services.exception;
 
-public class ObjectNoFoundException extends RuntimeException {
+public class ObjectNotFoundException extends RuntimeException {
     private static final long serialVersionUID = 1L;
 
-    public ObjectNoFoundException(String msg) {
+    public ObjectNotFoundException(String msg) {
         super(msg);
     }
 }

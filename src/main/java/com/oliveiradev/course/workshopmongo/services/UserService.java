@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.oliveiradev.course.workshopmongo.domain.User;
 import com.oliveiradev.course.workshopmongo.dto.UserDTO;
 import com.oliveiradev.course.workshopmongo.repository.UserRepository;
-import com.oliveiradev.course.workshopmongo.services.exception.ObjectNoFoundException;
+import com.oliveiradev.course.workshopmongo.services.exception.ObjectNotFoundException;
 
 @Service
 public class UserService {
@@ -23,7 +23,7 @@ public class UserService {
 
     public User findById(String id) {
         Optional<User> user = repo.findById(id);
-        return user.orElseThrow(() -> new ObjectNoFoundException("Objeto não encontrado"));
+        return user.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
     }
 
     public User insert(User obj) {
@@ -33,6 +33,17 @@ public class UserService {
     public void delete (String id) {
         findById(id);
         repo.deleteById(id);
+    }
+
+    public User update (User obj) {
+        User newObj = repo.findById(obj.getId()).orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
+        updateData (newObj, obj);
+        return repo.save((newObj));
+    }
+
+    private void updateData(User newObj, User obj) {
+        newObj.setName(obj.getName());
+        newObj.setEmail(obj.getEmail());
     }
 
     public User fromDTO(UserDTO objDto) {

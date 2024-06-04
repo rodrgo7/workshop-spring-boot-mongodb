@@ -18,8 +18,6 @@ import com.oliveiradev.course.workshopmongo.domain.User;
 import com.oliveiradev.course.workshopmongo.dto.UserDTO;
 import com.oliveiradev.course.workshopmongo.services.UserService;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-
 
 
 @RestController
